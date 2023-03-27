@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Value=1.0
+Type=Application
+Name=EScribe Suite
+GenericName=EScribe Suite
+Comment=Customize your Evolv DNA device
+Icon=${SNAP}/meta/gui/escribe-suite.png
+Exec=escribe-suite
+Categories=Science
