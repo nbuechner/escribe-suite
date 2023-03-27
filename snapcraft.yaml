@@ -11,7 +11,7 @@ architectures: [ amd64, arm64 ]
 
 apps:
   escribe-suite:
-    command: ./launch-escribe-suite
+    command: /usr/bin/mono $SNAP/EScribe.exe
     plugs: [home, x11, desktop, raw-usb, hardware-observe, shared-memory ]
     environment:
         MONO_CONFIG: "$SNAP/etc/mono/config"
@@ -20,15 +20,22 @@ apps:
         DISABLE_WAYLAND: 1
 parts:
   escribe-suite:
-    source: ./escribe-suite/
+    source: .
     source-type: local
     plugin: dump
     override-pull: |
+       mkdir -p $CRAFT_PART_SRC/tmp/tmp/
+       wget -O $CRAFT_PART_SRC/tmp/SetupEScribe2_SP50_INT.run https://downloads.evolvapor.com/SetupEScribe2_SP50_INT.run
+       chmod a+rx $CRAFT_PART_SRC/tmp/SetupEScribe2_SP50_INT.run
+       $CRAFT_PART_SRC/tmp/SetupEScribe2_SP50_INT.run --quiet --accept --noexec --keep --nox11 --nodiskspace --target $CRAFT_PART_SRC/tmp
+       cd $CRAFT_PART_SRC
+       unzip -o $CRAFT_PART_SRC/tmp/common/data/escribe-suite.zip
+       rm -Rf $CRAFT_PART_SRC/tmp
+       cd $CRAFT_PART_SRC
        craftctl default
-       cp -f /root/project/get-escribe.sh ./
+
     override-prime: |
        craftctl default
-       chmod a+rx ./launch-escribe-suite
        find . -type f -exec chmod a+r {} \;
        find . -type d -exec chmod a+rx {} \;
     build-packages:
@@ -72,4 +79,3 @@ layout:
 lint:
   ignore:
     - library
-    - classic
