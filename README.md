@@ -3,7 +3,7 @@ You can install the snap locally with the command:
 
     sudo snap install escribe-suite_2.0_amd64.snap --dangerous
 
-To give the snap all required permissions (access the USB device) you have to execute these command after you installed the snap.
+To give the snap all required permissions (access the USB device) you have to execute these command after you installed the snap:
 
     sudo snap connect escribe-suite:raw-usb :raw-usb
     sudo snap connect escribe-suite:hardware-observe :hardware-observe
