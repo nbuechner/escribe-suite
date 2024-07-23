@@ -1,6 +1,6 @@
 name: escribe-suite
 base: core22
-version: '2.0'
+version: '2.1'
 summary: Configuring, monitoring, and modifying the operation of your DNA device
 description: |
    EScribe Suite is a collection of software for configuring, monitoring, and modifying the operation of your DNA device.
@@ -25,7 +25,7 @@ parts:
     plugin: dump
     override-pull: |
        mkdir -p $CRAFT_PART_SRC/tmp/tmp/
-       wget -O $CRAFT_PART_SRC/tmp/SetupEScribe2_SP50_INT.run https://downloads.evolvapor.com/SetupEScribe2_SP50_INT.run
+       wget -O $CRAFT_PART_SRC/tmp/SetupEScribe2_SP50_INT.run https://downloads.evolvapor.com/SetupEScribe2_SP57_INT.run
        chmod a+rx $CRAFT_PART_SRC/tmp/SetupEScribe2_SP50_INT.run
        $CRAFT_PART_SRC/tmp/SetupEScribe2_SP50_INT.run --quiet --accept --noexec --keep --nox11 --nodiskspace --target $CRAFT_PART_SRC/tmp
        cd $CRAFT_PART_SRC
